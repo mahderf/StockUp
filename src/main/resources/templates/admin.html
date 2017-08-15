@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Create your resume with Robo Resume!">
+    <meta name="author" content="Nathan Merris">
+
+    <title>Stock Up</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <!-- **** SPRING BOOT EXPECTS ALL STATIC RESOURCES TO BE IN resources/static **** -->
+    <!-- So even though IntelliJ does not think the refs are good, they work when running on the server -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/agency.min.css" rel="stylesheet">
+    <link href="css/customstyles.css" rel="stylesheet">
+    <link href="css/customtable.css" rel="stylesheet">
+
+
+</head>
+
+<body id="page-top">
+
+<!-- Contact -->
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <!-- placholder so form is centered, could not get offset to work -->
+            <!--<div class="col-lg-2"></div>-->
+            <div class="col-lg-12">
+                <h1 class="section-heading text-center">Admin Page</h1>
+                <a href="enterproduct" class="btn btn-md">Add product</a>
+
+                <div>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Product Id</th>
+                            <th>Product Description</th>
+                            <th>Product Price</th>
+                            <th>Product Quanity</th>
+                        </tr>
+                        </thead>
+
+                        <th:block th:each="item:${productlist}">
+                        <!--<tfoot>-->
+                        <!--<tr>-->
+                            <!--<td>Sum</td>-->
+                            <!--<td>$360</td>-->
+                        <!--</tr>-->
+                        <!--</tfoot>-->
+                        <tbody>
+                        <tr>
+                            <td><p th:text="${item.productId}"/></td>
+                            <td><p th:text="${item.description}"/></td>
+                            <td><p th:text="${item.price}"/></td>
+                            <td><p th:text="${item.quantity}"/></td>
+                        </tr>
+                        </tbody>
+                        </th:block>
+                    </table>
+
+                </div>
+                <h2>Transaction History</h2>
+                <div>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Product Id</th>
+                            <th>Product Price</th>
+                            <th>Product Quanity</th>
+                            <th>Product Total Tax</th>
+                            <th>Product Total Price</th>
+                        </tr>
+                        </thead>
+
+                        <th:block th:each="item:${transactionlist}">
+                            <!--<tfoot>-->
+                            <!--<tr>-->
+                            <!--<td>Sum</td>-->
+                            <!--<td>$360</td>-->
+                            <!--</tr>-->
+                            <!--</tfoot>-->
+                            <tbody>
+                            <tr>
+                                <td><p th:text="${item.productId}"/></td>
+                                <td><p th:text="${item.price}"/></td>
+                                <td><p th:text="${item.quantity}"/></td>
+                                <td><p th:text="${item.totalPrice}"/></td>
+                                <td><p th:text="${item.taxTotal}"/></td>
+                            </tr>
+                            </tbody>
+                        </th:block>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <span class="copyright">Copyright &copy; Nathan Merris 2017</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper/popper.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact form JavaScript -->
+<!--<script src="js/jqBootstrapValidation.js"></script>-->
+<!--<script src="js/contact_me.js"></script>-->
+
+<!-- Custom scripts for this template -->
+<script src="js/agency.min.js"></script>
+
+</body>
+
+</html>

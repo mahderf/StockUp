@@ -96,4 +96,13 @@ public class MainController {
 
         return "/purchaseproductconfirmation";
     }
+    @GetMapping("/admin")
+    public String ShowProduct(Model model) {
+//        System.out.println("++++++++++++++++++++++++++++++ JUST ENTERED /addproduct GET route ++++++++++++++++++");
+
+    model.addAttribute("productlist" , productRepo.findAll());
+    model.addAttribute("transactionlist", transactionRepo.findAll());
+            return "admin";
+    }
+
 }
