@@ -54,6 +54,7 @@
                                 <label class="section-heading" for="quantity">Quantity</label>
                                 <input id="quantity" class="form-control" type="text" th:field="*{quantity}"/>
                                 <p class="help-block text-danger" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></p>
+                                <p class="help-block text-danger" th:if="${showMsg}"  th:text="${noStockMsg}"></p>
                             </div>
 
                             <input class="btn btn-md" type="submit" value="Submit"/>

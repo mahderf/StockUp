@@ -14,7 +14,7 @@ public class Transaction {
     private double price;
     //we can add description and price
     private  String productId;
-    private double quantity;
+    private long quantity;
     private double totalPrice;
     private double taxTotal;
 
@@ -35,11 +35,11 @@ public class Transaction {
         this.productId = productId;
     }
 
-    public double getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 
