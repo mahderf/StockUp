@@ -66,6 +66,13 @@ public class MainController {
 //            return "addproduct";
 //        }
 
+        Iterable<Product>productlist=productRepo.findAllByProductId(transaction.getProductId());
+        Product p = productRepo.findOne(new Long(1));
+        transaction.setPrice(p.getPrice());
+        double taxid=0.06;
+        transaction.setTaxTotal(p.getPrice() * taxid * transaction.getQuantity());
+        transaction.setTotalPrice(transaction.getTaxTotal()+ transaction.getQuantity()*p.getPrice());
+
 
         // Product should have first and last names, and email at this point
         // the collections in Product are null at this point, which shows up as a BLOB in the db!  ...blob is you uncle
