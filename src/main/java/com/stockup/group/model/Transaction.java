@@ -10,10 +10,14 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    //this is unit price
+    private double price;
     //we can add description and price
     private  String productId;
     private String quantity;
+    private double totalPrice;
+    private double taxTotal;
+
 
     public long getId() {
         return id;
@@ -37,5 +41,29 @@ public class Transaction {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public double getTaxTotal() {
+        return taxTotal;
+    }
+
+    public void setTaxTotal(double taxTotal) {
+        this.taxTotal = taxTotal;
     }
 }
