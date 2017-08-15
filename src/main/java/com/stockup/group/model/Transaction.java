@@ -1,9 +1,12 @@
 package com.stockup.group.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Transaction {
@@ -13,7 +16,9 @@ public class Transaction {
     //this is unit price
     private double price;
     //we can add description and price
+    @NotEmpty
     private  String productId;
+    @NotNull
     private long quantity;
     private double totalPrice;
     private double taxTotal;

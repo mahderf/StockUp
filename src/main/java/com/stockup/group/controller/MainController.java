@@ -34,12 +34,12 @@ public class MainController {
     }
 
     @PostMapping("/enterproduct")
-    public String addproductPost(@ModelAttribute("newProduct") Product Product ) {
+    public String addproductPost(@Valid @ModelAttribute("newProduct") Product Product, BindingResult bindingResult) {
 //        System.out.println("++++++++++++++++++++++++++++++ JUST ENTERED /addproduct POST route ++++++++++++++++++");
 //
-//        if(bindingResult.hasErrors()) {
-//            return "addproduct";
-//        }
+        if(bindingResult.hasErrors()) {
+            return "enterproduct";
+        }
 
 
         // Product should have first and last names, and email at this point
@@ -60,15 +60,28 @@ public class MainController {
     }
 
     @PostMapping("/purchaseproduct")
-    public String PurchaseProductPost(@ModelAttribute("newTransaction") Transaction transaction, Model model) {
+    public String PurchaseProductPost(@Valid @ModelAttribute("newTransaction") Transaction transaction, Model model,
+                                      BindingResult bindingResult) {
 //        System.out.println("++++++++++++++++++++++++++++++ JUST ENTERED /addproduct POST route ++++++++++++++++++");
 //
-//        if(bindingResult.hasErrors()) {
-//            return "addproduct";
-//        }
+        if(bindingResult.hasErrors()) {
+            return "purchaseproduct";
+        }
   // Get product information from database and calculate price and tax
         Iterable<Product>productlist=productRepo.findAllByProductId(transaction.getProductId());
-        Product p = productRepo.findOne(new Long(1));
+
+        Product p = null;
+        try {
+            p = productlist.iterator().next();
+        } catch (Exception e) {
+          String noproductid="Sorry,We don't carry that product";
+            model.addAttribute("showNoPrdctMsg", true);
+            model.addAttribute("noproductMsg", noproductid);
+            return"purchaseproduct";
+        }
+
+
+
         transaction.setPrice(p.getPrice());
         double taxid=0.06;
         transaction.setTaxTotal(p.getPrice() * taxid * transaction.getQuantity());
@@ -82,7 +95,7 @@ public class MainController {
             model.addAttribute("showMsg", true);
             model.addAttribute("noStockMsg", reply);
             return "purchaseproduct";
-        }
+          }
 
         p.setQuantity(p.getQuantity()- transaction.getQuantity());
 
