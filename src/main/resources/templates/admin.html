@@ -62,19 +62,21 @@
                             <!--<td>$360</td>-->
                         <!--</tr>-->
                         <!--</tfoot>-->
+
+
                         <tbody>
                         <tr>
                             <td><p th:text="${item.productId}"/></td>
                             <td><p th:text="${item.description}"/></td>
                             <td><p th:text="${item.price}"/></td>
-                            <td><p th:text="${item.quantity}"/></td>
+                            <td><p th:text="${item.quantity}" th:classappend="${item.quantity} &lt; 1 ? outstock:instock"/></td>
                         </tr>
                         </tbody>
                         </th:block>
                     </table>
 
                 </div>
-                <h2>Transaction History</h2>
+                <h2 class="section-heading text-center">Transaction History</h2>
                 <div>
 
                     <table>

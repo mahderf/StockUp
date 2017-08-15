@@ -1,3 +1,13 @@
+.outstock{
+    color:red;
+}
+.instock{
+    color:green;
+}
+
+
+
+
 .btn-xl {
     margin: 10px;
 }
