@@ -1,16 +1,18 @@
 package com.stockup.group.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String description;
-    private String productid;
+    private String productId;
     private double price;
     private long quantity;
 
@@ -31,12 +33,12 @@ public class Product {
         this.description = description;
     }
 
-    public String getProductid() {
-        return productid;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProductid(String productid) {
-        this.productid = productid;
+    public void setProductId(String productid) {
+        this.productId = productid;
     }
 
     public double getPrice() {
