@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -60,8 +61,8 @@ public class MainController {
     }
 
     @PostMapping("/purchaseproduct")
-    public String PurchaseProductPost(@Valid @ModelAttribute("newTransaction") Transaction transaction, Model model,
-                                      BindingResult bindingResult) {
+    public String PurchaseProductPost(@Valid @ModelAttribute("newTransaction") Transaction transaction,
+                                      BindingResult bindingResult, Model model) {
 //        System.out.println("++++++++++++++++++++++++++++++ JUST ENTERED /addproduct POST route ++++++++++++++++++");
 //
         if(bindingResult.hasErrors()) {
@@ -116,6 +117,20 @@ public class MainController {
     model.addAttribute("productlist" , productRepo.findAll());
     model.addAttribute("transactionlist", transactionRepo.findAll());
             return "admin";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateProduct(@PathVariable("id") long id, Model model)
+    {
+        model.addAttribute("newProduct",productRepo.findOne(id));
+        return"enterproduct";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable("id") long id, Model model)
+    {
+        productRepo.delete(id);
+        return"redirect:/admin";
     }
 
 }

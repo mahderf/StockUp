@@ -52,6 +52,7 @@
                             <th>Product Description</th>
                             <th>Product Price</th>
                             <th>Product Quanity</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
 
@@ -70,6 +71,11 @@
                             <td><p th:text="${item.description}"/></td>
                             <td><p th:text="${item.price}"/></td>
                             <td><p th:text="${item.quantity}" th:classappend="${item.quantity} &lt; 1 ? outstock:instock"/></td>
+                            <td>
+                                <a th:href="@{/update/{id}(id=${item.id})}" class="action-link">Update</a>
+                                <!--<a th:href="@{/detail/{id}(id=${contact.id})}">Details</a>-->
+                                <a th:href="@{/delete/{id}(id=${item.id})}" class="action-link">Delete</a>
+                            </td>
                         </tr>
                         </tbody>
                         </th:block>
@@ -102,9 +108,11 @@
                                 <td><p th:text="${item.productId}"/></td>
                                 <td><p th:text="${item.price}"/></td>
                                 <td><p th:text="${item.quantity}"/></td>
-                                <td><p th:text="${item.totalPrice}"/></td>
                                 <td><p th:text="${item.taxTotal}"/></td>
+                                <td><p th:text="${item.totalPrice}"/></td>
+
                             </tr>
+
                             </tbody>
                         </th:block>
                     </table>

@@ -37,3 +37,6 @@ tfoot td{
 tr:hover{
     background:#fff2a8;
 }
+.action-link{
+    color:blue;
+}
