@@ -51,6 +51,7 @@
                 <label class="section-heading" for="productId">product Id</label>
                 <input id="productId" class="form-control" type="text" th:field="*{productId}"/>
                 <p class="help-block text-danger" th:if="${#fields.hasErrors('productId')}" th:errors="*{productId}"></p>
+                <p class="help-block text-danger" th:if="${showMsg}"  th:text="${duplicateIdMsg}"></p>
               </div>
               <div class="form-group">
                 <label class="section-heading" for="description">Description</label>

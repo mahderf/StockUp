@@ -35,17 +35,34 @@ public class MainController {
     }
 
     @PostMapping("/enterproduct")
-    public String addproductPost(@Valid @ModelAttribute("newProduct") Product Product, BindingResult bindingResult) {
+    public String addproductPost(@Valid @ModelAttribute("newProduct") Product product, BindingResult bindingResult, Model model) {
 //        System.out.println("++++++++++++++++++++++++++++++ JUST ENTERED /addproduct POST route ++++++++++++++++++");
 //
-        if(bindingResult.hasErrors()) {
-            return "enterproduct";
+        boolean duplicateProductId = false;
+
+        Iterable<Product>productlist=productRepo.findAllByProductId(product.getProductId());
+
+        long count= productlist.spliterator().getExactSizeIfKnown();
+
+        System.out.println("+++++++++++++++++++++++++++"+count+"+++++++++++++++++++++++") ;
+        if(count>0){
+
+            String duplicateProdId="You already have that Product Id";
+            model.addAttribute("showMsg", true);
+            model.addAttribute("duplicateIdMsg",duplicateProdId);
+            duplicateProductId = true;
+//            return "enterproduct";
+
         }
 
 
+        if(bindingResult.hasErrors() || duplicateProductId) {
+            return "enterproduct";
+        }
+
         // Product should have first and last names, and email at this point
         // the collections in Product are null at this point, which shows up as a BLOB in the db!  ...blob is you uncle
-        productRepo.save(Product);
+        productRepo.save(product);
 
         return "/addproductconfirmation";
     }

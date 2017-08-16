@@ -2,10 +2,8 @@ package com.stockup.group.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -15,14 +13,16 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @NotEmpty
+//    @NotEmpty
     @Size(min=2, max=50)
     private String description;
     @NotEmpty
+//    @Column(unique = true)
     private String productId;
     @NotNull
     private double price;
     @NotNull
+    @Min(1)
     private long quantity;
 
 
