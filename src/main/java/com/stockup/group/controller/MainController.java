@@ -25,6 +25,11 @@ public class MainController {
     @Autowired
     TransactionRepo transactionRepo;
 
+    @GetMapping("/")
+    public String HomePage()
+    {
+        return"home";
+    }
     @GetMapping("/enterproduct")
     public String addproductGet(Model model) {
 //        System.out.println("++++++++++++++++++++++++++++++ JUST ENTERED /addproduct GET route ++++++++++++++++++");
