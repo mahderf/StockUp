@@ -146,7 +146,7 @@ public class MainController {
         // the collections in Product are null at this point, which shows up as a BLOB in the db!  ...blob is you uncle
         transactionRepo.save(transaction);
 
-        return "/purchaseproductconfirmation";
+        return "purchaseproductconfirmation";
     }
     @GetMapping("/admin")
     public String ShowProduct(Model model) {
