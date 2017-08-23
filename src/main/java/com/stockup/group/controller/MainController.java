@@ -41,7 +41,7 @@ public class MainController {
 
     @RequestMapping("/logout")
     public String logout() {
-        return "home";
+        return "logout"; // I don't think the return matters here, you need to specify where you want to go next in SecurityConfiguration logout method section
     }
 
 
