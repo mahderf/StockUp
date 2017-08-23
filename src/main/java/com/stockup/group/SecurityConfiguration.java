@@ -24,6 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().httpBasic() // allows authentication in the URL itself
                 // logout via httprequest, not very secure but ok for now
+                // NOTE: unlike .antMatchers(antPatters...) above, .logoutSuccessUrl must be a ROUTE, in this case the default route works well
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");;
     }
 
