@@ -85,7 +85,7 @@ public class MainController {
         // the collections in Product are null at this point, which shows up as a BLOB in the db!  ...blob is you uncle
         productRepo.save(product);
 
-        return "/addproductconfirmation";
+        return "addproductconfirmation";
     }
 
 
