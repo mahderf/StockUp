@@ -30,6 +30,21 @@ public class MainController {
     {
         return"home";
     }
+
+
+    @GetMapping("/login")
+    public String loginGet () {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String loginPost() {
+        return "login";
+    }
+
+
+
+    // admin enter a new product
     @GetMapping("/enterproduct")
     public String addproductGet(Model model) {
 //        System.out.println("++++++++++++++++++++++++++++++ JUST ENTERED /addproduct GET route ++++++++++++++++++");
@@ -39,6 +54,7 @@ public class MainController {
         return "enterproduct";
     }
 
+    // admin enter a new product
     @PostMapping("/enterproduct")
     public String addproductPost(@Valid @ModelAttribute("newProduct") Product product, BindingResult bindingResult, Model model) {
 //        System.out.println("++++++++++++++++++++++++++++++ JUST ENTERED /addproduct POST route ++++++++++++++++++");

@@ -1,0 +1,39 @@
+package com.stockup.group;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http    .authorizeRequests()
+                // allow anyone to access default route, home, both purchase pages
+                .antMatchers("/", "/home", "/purchaseproduct", "/purchaseproductconfirmation", "/css/**", "/js/**").permitAll() // to allow css and js files to work, could also add img folders, etc
+                .anyRequest().authenticated()
+                .and()
+                // below: this just points to the page that will SHOW when user tries to access any route that requires auth
+                // after successful login, they will automatically continue to whatever link they clicked to trigger the auth form
+                .formLogin().loginPage("/login").permitAll()
+                .and()
+                .httpBasic();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication().
+                withUser("admin").password("password").roles("USER");
+
+                // to add more accounts, chain more
+//                .and().withUser("userTwo").password("passwordTwo").roles("USER");
+
+
+    }
+
+}
