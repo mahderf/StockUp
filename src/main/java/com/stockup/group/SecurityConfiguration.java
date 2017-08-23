@@ -14,7 +14,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http    .authorizeRequests()
                 // allow anyone to access default route, home, both purchase pages
-                .antMatchers("/", "/home", "/purchaseproduct", "/purchaseproductconfirmation", "/css/**", "/js/**").permitAll() // to allow css and js files to work, could also add img folders, etc
+                .antMatchers("/", "/home", "/purchaseproduct", "/purchaseproductconfirmation",
+                        "/css/**", "/js/**", "/img", "/scss", "/vendor").permitAll() // to allow css and js files to work, could also add img folders, etc
                 .anyRequest().authenticated()
                 .and()
                 // below: this just points to the page that will SHOW when user tries to access any route that requires auth
