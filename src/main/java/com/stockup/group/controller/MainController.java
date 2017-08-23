@@ -41,7 +41,7 @@ public class MainController {
 
     @RequestMapping("/logout")
     public String logout() {
-        return "logout";
+        return "home";
     }
 
 
